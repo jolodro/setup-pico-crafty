@@ -27,9 +27,9 @@ pip install --upgrade pip
 echo "📦 Instalando dependências Python..."
 pip install flask Flask-SQLAlchemy pyftpdlib requests psutil
 
-echo "☕ Instalando Java (OpenJDK 17)..."
-pkg update && pkg upgrade -y
-pkg install openjdk-17
+# echo "☕ Instalando Java (OpenJDK 17)..."
+# pkg update && pkg upgrade -y
+# pkg install openjdk-17
 
 echo "☕ Instalando Java (OpenJDK 21)..."
 pkg install openjdk-21
