@@ -29,10 +29,10 @@ pip install flask Flask-SQLAlchemy pyftpdlib requests psutil
 
 echo "☕ Instalando Java (OpenJDK 17)..."
 pkg upgrade
-pkg install -y openjdk-17-jre
+pkg install -y openjdk-17
 
 echo "☕ Instalando Java (OpenJDK 21)..."
-pkg install -y openjdk-21-jdk
+pkg install -y openjdk-21
 
 # -------------------------------
 # CRIANDO O start.sh AUTOMATICAMENTE
