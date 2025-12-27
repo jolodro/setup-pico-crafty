@@ -24,13 +24,11 @@ echo "📥 Clonando repositório..."
 pkg install -y git
 git clone "$REPO_URL"
 
-cd "./picocrafty"
-
 echo "🐍 Instalando Python..."
 pkg install -y python3
 pip install --user virtualenv
 
-cd "$PROJECT_DIR"
+cd "$PROJECT_DIR/picocrafty"
 
 echo "🐍 Criando venv..."
 python3 -m venv venv
