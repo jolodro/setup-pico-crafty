@@ -18,11 +18,13 @@ echo "📂 Diretório escolhido: $INSTALL_DIR"
 
 # Criar diretório se não existir
 mkdir -p "$INSTALL_DIR"
-cd "$INSTALL_DIR/picocrafty"
+cd "$INSTALL_DIR"
 
 echo "📥 Clonando repositório..."
 pkg install -y git
 git clone "$REPO_URL"
+
+cd "./picocrafty"
 
 echo "🐍 Instalando Python..."
 pkg install -y python3
