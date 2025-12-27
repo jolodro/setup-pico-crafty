@@ -3,15 +3,32 @@
 set -e
 
 REPO_URL="https://github.com/jolodro/picocrafty.git"
-PROJECT_DIR="picocrafty"
+DEFAULT_INSTALL_DIR="$HOME"
+
+echo "📁 Onde deseja instalar o serviço?"
+echo "➡️ Pressione ENTER para usar o padrão: $DEFAULT_INSTALL_DIR"
+read -p "Caminho de instalação: $INSTALL_DIR" 
+
+# Se o usuário não digitar nada, usa o padrão
+INSTALL_DIR=${INSTALL_DIR:-$DEFAULT_INSTALL_DIR}
+
+PROJECT_DIR="$INSTALL_DIR"
+
+echo "📂 Diretório escolhido: $INSTALL_DIR"
+
+# Criar diretório se não existir
+mkdir -p "$INSTALL_DIR"
+cd "$INSTALL_DIR"
 
 echo "📥 Clonando repositório..."
-git clone $REPO_URL
+sudo apt install -y git
+git clone "$REPO_URL"
 
-cd $PROJECT_DIR
+echo "🐍 Instalando Python..."
+sudo apt install -y python3
+pip install --user virtualenv
 
-echo "Instalando virtualenv..."
-pip install virtualenv
+cd "$PROJECT_DIR/picocrafty"
 
 echo "🐍 Criando venv..."
 python3 -m venv venv
@@ -23,7 +40,7 @@ echo "⬆️ Atualizando pip..."
 pip install --upgrade pip
 
 echo "📦 Instalando dependências Python..."
-pip install flask Flask-SQLAlchemy pyftpdlib requests psutil
+pip install flask Flask-SQLAlchemy pyftpdlib requests psutil gunicorn
 
 echo "☕ Instalando Java (OpenJDK 17)..."
 sudo apt update
@@ -40,14 +57,20 @@ echo "📝 Criando start.sh..."
 cat << 'EOF' > start.sh
 #!/bin/bash
 
+DIR="$(cd "$(dirname "$0")" && pwd)"
+
 echo "🐍 Ativando venv..."
-source venv/bin/activate
+source "$DIR/venv/bin/activate"
 
 echo "🚀 Iniciando aplicação..."
-python run.py
+gunicorn -c config.py "app:create_app()"
 EOF
 
 chmod +x start.sh
 
+echo ""
 echo "✅ Setup concluído com sucesso!"
-echo "➡️ Inicie o projeto com: ./start.sh"
+echo "📂 Instalado em: $PROJECT_DIR"
+echo "➡️ Para iniciar:"
+echo "   cd $PROJECT_DIR"
+echo "   ./start.sh"
