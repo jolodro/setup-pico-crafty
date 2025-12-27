@@ -25,7 +25,7 @@ sudo apt install -y git
 git clone "$REPO_URL"
 
 echo "🐍 Instalando Python..."
-apt install -y python3
+sudo apt install -y python3
 pip install --user virtualenv
 
 cd "$PROJECT_DIR/picocrafty"
