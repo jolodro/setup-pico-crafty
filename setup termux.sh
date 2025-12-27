@@ -3,7 +3,7 @@
 set -e
 
 REPO_URL="https://github.com/jolodro/picocrafty.git"
-DEFAULT_INSTALL_DIR="$HOME"
+DEFAULT_INSTALL_DIR="$HOME/picocrafty"
 
 echo "📁 Onde deseja instalar o serviço?"
 echo "➡️ Pressione ENTER para usar o padrão: $DEFAULT_INSTALL_DIR"
