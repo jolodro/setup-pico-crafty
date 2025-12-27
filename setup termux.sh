@@ -3,11 +3,11 @@
 set -e
 
 REPO_URL="https://github.com/jolodro/picocrafty.git"
-DEFAULT_INSTALL_DIR="$HOME/picocrafty"
+DEFAULT_INSTALL_DIR="$HOME"
 
 echo "📁 Onde deseja instalar o serviço?"
 echo "➡️ Pressione ENTER para usar o padrão: $DEFAULT_INSTALL_DIR"
-read -p "Caminho de instalação: " INSTALL_DIR
+read -p "Caminho de instalação: $INSTALL_DIR" 
 
 # Se o usuário não digitar nada, usa o padrão
 INSTALL_DIR=${INSTALL_DIR:-$DEFAULT_INSTALL_DIR}
@@ -18,7 +18,7 @@ echo "📂 Diretório escolhido: $INSTALL_DIR"
 
 # Criar diretório se não existir
 mkdir -p "$INSTALL_DIR"
-cd "$INSTALL_DIR"
+cd "$INSTALL_DIR/picocrafty"
 
 echo "📥 Clonando repositório..."
 pkg install -y git
