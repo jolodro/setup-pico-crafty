@@ -40,7 +40,7 @@ echo "⬆️ Atualizando pip..."
 pip install --upgrade pip
 
 echo "📦 Instalando dependências Python..."
-pip install flask Flask-SQLAlchemy pyftpdlib requests psutil gunicron
+pip install flask Flask-SQLAlchemy pyftpdlib requests psutil gunicorn
 
 echo "☕ Instalando Java (OpenJDK 21)..."
 pkg install -y openjdk-21
